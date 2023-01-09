@@ -1,0 +1,173 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 3,
+    "passes": 1,
+    "pending": 2,
+    "failures": 0,
+    "start": "2022-12-23T11:45:03.987Z",
+    "end": "2022-12-23T11:45:27.787Z",
+    "duration": 23800,
+    "testsRegistered": 5,
+    "passPercent": 33.33333333333333,
+    "pendingPercent": 40,
+    "other": 2,
+    "hasOther": true,
+    "skipped": 2,
+    "hasSkipped": true
+  },
+  "results": [
+    {
+      "uuid": "9558af71-c8a8-40de-91a7-196cc338396e",
+      "title": "",
+      "fullFile": "cypress\\e2e\\test_tetrapak.cy.js",
+      "file": "cypress\\e2e\\test_tetrapak.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "login credenziali corrette",
+          "fullTitle": "login credenziali corrette",
+          "timedOut": null,
+          "duration": 0,
+          "state": "pending",
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "//TEST1:LOGIN\n// cy.getCookies()\ncy.session('login', () => {\n  cy.visit('https://ta-dpo-aks-test-01.westeurope.cloudapp.azure.com/oiadp-portal');\n  cy.get('.login-pf-page');\n  cy.contains('Username o email');\n  cy.contains('Password');\n  cy.get('#username').type('testaccount');\n  cy.get('#password').type('userT@1234');\n  cy.get('#togglePassword').click();\n  cy.contains('Password dimenticata?');\n  cy.wait(1000);\n  cy.contains('Accedi').click();\n  cy.contains('Welcome');\n  //cy.url().should('contain', '/login-successful')\n  // cy.contains('Available Applications')\n  //  cy.contains('Material Modeler')\n  //  cy.contains('Open App').click()\n  //  cy.contains('Material Modeler')\n});",
+          "err": {},
+          "uuid": "56a9e943-0445-4ac3-80d3-3fd5810248b1",
+          "parentUUID": "9558af71-c8a8-40de-91a7-196cc338396e",
+          "isHook": false,
+          "skipped": true
+        },
+        {
+          "title": "login password corretta,username sbagliata",
+          "fullTitle": "login password corretta,username sbagliata",
+          "timedOut": null,
+          "duration": 0,
+          "state": "pending",
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "//TEST2:LOGIN\ncy.visit('https://ta-dpo-aks-test-01.westeurope.cloudapp.azure.com/oiadp-portal');\n// cy.getCookies()\n// cy.contains('Username o email')\n// cy.contains('Password')\ncy.get('#username').type('testaccount1');\ncy.get('#password').type('userT@1234');\n//cy.get('#togglePassword').click()\ncy.wait(1000);\ncy.get('#kc-login').click();\ncy.contains('Username o password non validi');",
+          "err": {},
+          "uuid": "5bcd2196-0ece-40a2-aba8-181d96d244a8",
+          "parentUUID": "9558af71-c8a8-40de-91a7-196cc338396e",
+          "isHook": false,
+          "skipped": true
+        },
+        {
+          "title": "login password sbagliata, username corretta",
+          "fullTitle": "login password sbagliata, username corretta",
+          "timedOut": null,
+          "duration": 11308,
+          "state": "failed",
+          "speed": null,
+          "pass": false,
+          "fail": true,
+          "pending": false,
+          "context": null,
+          "code": "cy.visit('https://ta-dpo-aks-test-01.westeurope.cloudapp.azure.com/oiadp-portal');\n//  cy.contains('Username o email')\n//  cy.contains('Password')\ncy.get('#username').type('testaccount');\ncy.get('#password').type('userT@12345');\n//  cy.get('#togglePassword').click()\ncy.wait(1000);\ncy.get('#kc-login').click();\ncy.contains('Ciao'); //test fallito",
+          "err": {
+            "message": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'Ciao' but never did.",
+            "estack": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'Ciao' but never did.\n    at Context.eval (webpack:///./cypress/e2e/test_tetrapak.cy.js:82:16)",
+            "diff": null
+          },
+          "uuid": "492ea1fc-0b62-48c9-8095-3c9b3ebc80f9",
+          "parentUUID": "9558af71-c8a8-40de-91a7-196cc338396e",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "Material Modeler",
+          "fullTitle": "Material Modeler",
+          "timedOut": null,
+          "duration": 7604,
+          "state": "failed",
+          "speed": null,
+          "pass": false,
+          "fail": true,
+          "pending": false,
+          "context": null,
+          "code": "//TEST4:Material Modeler\n// cy.getCookies()\n//cy.session(username, () => {\ncy.visit('https://ta-dpo-aks-test-01.westeurope.cloudapp.azure.com/oiadp-portal/material-modeler#/');\n// cy.get('.active > img').click()\ncy.contains('Available Applications');\ncy.contains('Material Modeler');\ncy.contains('Open App').click();\ncy.contains('Material Modeler');",
+          "err": {
+            "message": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'Available Applications' but never did.",
+            "estack": "AssertionError: Timed out retrying after 5000ms: Expected to find content: 'Available Applications' but never did.\n    at Context.eval (webpack:///./cypress/e2e/test_tetrapak.cy.js:97:11)",
+            "diff": null
+          },
+          "uuid": "a41a64ae-0200-446d-ad2b-7d56c4d3ac31",
+          "parentUUID": "9558af71-c8a8-40de-91a7-196cc338396e",
+          "isHook": false,
+          "skipped": false
+        },
+        {
+          "title": "Password dimenticata",
+          "fullTitle": "Password dimenticata",
+          "timedOut": null,
+          "duration": 2165,
+          "state": "passed",
+          "speed": "fast",
+          "pass": true,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "//cy.getCookies()\ncy.visit('https://ta-dpo-aks-test-01.westeurope.cloudapp.azure.com/oiadp-portal/material-modeler#/');\ncy.get('#reset-password').click();\ncy.contains('Email');\ncy.contains('Please enter your email address to reset your password. If you are having trouble to reset your password please contact your local admin.');\ncy.contains('Invia');",
+          "err": {},
+          "uuid": "53744ddb-c7e1-422e-b47f-0c9782a4996c",
+          "parentUUID": "9558af71-c8a8-40de-91a7-196cc338396e",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [
+        "53744ddb-c7e1-422e-b47f-0c9782a4996c"
+      ],
+      "failures": [
+        "492ea1fc-0b62-48c9-8095-3c9b3ebc80f9",
+        "a41a64ae-0200-446d-ad2b-7d56c4d3ac31"
+      ],
+      "pending": [],
+      "skipped": [
+        "56a9e943-0445-4ac3-80d3-3fd5810248b1",
+        "5bcd2196-0ece-40a2-aba8-181d96d244a8"
+      ],
+      "duration": 21077,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "charts": true,
+        "overwrite": false,
+        "html": false,
+        "json": true,
+        "reportDir": "cypress/reports"
+      },
+      "version": "6.2.0"
+    }
+  }
+}
